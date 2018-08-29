@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test</title>
+</head>
+<body>
+    <h4>SIGN UP FORM</h4>
+
+    <form method="post" action="/signup">
+        Name: <input type="text" name="name"><br>
+        Account: <input type="text" name="account"><br>
+        Password: <input type="password" name="password"><br>
+        <input type="submit" value="SEND">
+    </form>
+    <!-- 預設是get，但get會把所有資料寫在網址上（有隱私疑慮） -->
+
+
+    <h4>SIGN IN FORM</h4>
+
+    <form method="post" action="/signin">
+        Account: <input type="text" name="account"><br>
+        Password: <input type="password" name="password"><br>
+        <input type="submit" value="SEND">
+    </form>
+</body>
+</html>

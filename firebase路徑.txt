@@ -1,0 +1,32 @@
+資料的路徑
+"/data"
+"/title"
+"/user/0"
+"/user/0/name"
+
+{
+    data:5,
+    title:"Hello",
+    user:{
+        0:{
+            name:"PLY",
+            birthday:2000
+        },
+        1:{
+            name:"CCC",
+            birthday:1994
+        },
+    }
+}
+
+
+
+
+--------------
+列表資訊
+
+users:{
+    0:{},
+    1:{},
+    2:{}
+}

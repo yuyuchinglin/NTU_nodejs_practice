@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Comments</title>
+<script>
+function ajax(method, src, args, callback){
+	let req=new XMLHttpRequest();
+	if(method.toLowerCase()=="post"){
+		req.open(method, src);
+		req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		req.onload=callback;
+		req.send(args);
+	}else{
+		req.open(method, src+"?"+args);
+		req.onload=callback;
+		req.send();
+	}
+}
+
+function post(){
+	let name=document.querySelector("#name").value;
+	let content=document.querySelector("#content").value;
+	ajax("post","/post","name="+name+"&content="+content,function(){
+		if(this.responseText){
+			get();
+		};
+	});
+}
+
+let time = 0;
+function get(){
+	ajax("get","/get","time="+time,function(){
+		let data = JSON.parse(this.responseText);
+		show(data);
+	});
+}
+
+function show(data){
+	let board=document.getElementById("board");
+	// board.innerHTML = "";
+	let message;
+	for(let i=0; i<data.length;i++){
+		message = data[i];
+		board.innerHTML=message.name.bold()+": "+message.content+"<hr/>"+board.innerHTML;
+		time = message.time+1;
+	}
+}
+
+window.addEventListener("load",function(){
+	get();
+	window.setInterval(get,5000);
+})
+</script>
+</head>
+<body>
+	<h3>Comments</h3>
+	<div>
+		Name: <input type="text" id="name" /><br/>
+		Content: <textarea id="content"></textarea>
+		<button onclick="post();">Post</button>
+	</div>
+	<hr/>
+	<div id="board"></div>
+</body>
+</html>
